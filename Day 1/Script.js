@@ -1,63 +1,29 @@
 
-let clear = document.querySelectorAll('.clear')
-let display = document.querySelectorAll('.display')
-let btn = document.querySelectorAll('.btn')
-let currentInput = '';
-let currentOperation = '';
-let previousInput = '';
+let string = ""
 
-console.log(display.value)
-function appendNumber(number) {
-    currentInput += number;
-    display.value = `${previousInput} ${currentOperation} ${currentInput}`;
+let input = document.getElementById('display')
+let buttons = document.querySelectorAll('button')
+
+
+Array.from(buttons).forEach((button)=>{
+    button.addEventListener('click', (e)=>{
+  if(e.target.innerHTML == '='){
+    string = eval(string) 
+    document.querySelector('input').value = string
+    
 }
-function appendOperation(operation) {
-    if (currentInput === '') return;
-    if (previousInput !== '') {
-        calculate(); 
-    }
-    currentOperation = operation;
-    previousInput = currentInput;
-    currentInput = '';
-    display.value = `${previousInput} ${currentOperation}`;
+ else if(e.target.innerHTML == 'C'){
+
+    string = '0 '
+    document.querySelector('input').value = string
+    
 }
-
-function calculate() {
-    if (previousInput === '' || currentInput === '') return;
-    let result;
-    let prev = parseFloat(previousInput);
-    let current = parseFloat(currentInput);
-
-    switch (currentOperation) {
-        case '+':
-            result = prev + current;
-            break;
-        case '-':
-            result = prev - current;
-            break;
-        case '*':
-            result = prev * current;
-            break;
-        case '/':
-            if (current === 0) {
-                alert("Cannot divide by zero");
-                return;
-            }
-            result = prev / current;
-            break;
-        default:
-            return;
-    }
-
-    currentInput = result.toString();
-    currentOperation = '';
-    previousInput = '';
-    display.value = currentInput;
+else{
+    console.log(e.target);
+    string = string + e.target.innerHTML
+    document.querySelector('input').value  = string
 }
 
-function clearDisplay() {
-    currentInput = '';
-    previousInput = '';
-    currentOperation = '';
-    display.value = '';
-}
+    })
+})
+ 

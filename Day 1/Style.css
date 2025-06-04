@@ -166,13 +166,12 @@ justify-content: center;
 .btn:hover{
     color: green;
 }
-span{
-font-size: 60px;
+input{
+font-size: 30px;
 display: flex;
 padding: 0 1px;
 place-content: end;
 color: #fff;
-width: 100%;
 
 }
 
